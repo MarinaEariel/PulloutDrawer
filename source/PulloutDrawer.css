@@ -1,0 +1,104 @@
+.pullout-drawer {
+    overflow: hidden;
+}
+.pullout-drawer.collapsed {
+    pointer-events: none;
+}
+.pullout-drawer.top {
+    top: 0;
+    right: 0;
+    left: 0;
+}
+.pullout-drawer.right {
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.pullout-drawer.bottom {
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.pullout-drawer.left {
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+.pullout-drawer.horizontal .slider {
+    width: 100%;
+}
+.pullout-drawer.vertical .slider {
+    height: 100%;
+}
+.pulltab {
+    pointer-events: all;
+    position: absolute;
+    z-index: 1;
+    visibility: inherit;
+}
+.pullout-drawer.horizontal .pulltab {
+    width: 54px !important;
+    height: 46px !important;
+}
+.pullout-drawer.vertical .pulltab {
+    height: 54px !important;
+    width: 46px !important;
+}
+.pullout-drawer.horizontal .pulltab.center {
+    left: 48%;
+}
+.pullout-drawer.horizontal .pulltab.right {
+    right: 0;
+}
+.pullout-drawer.vertical .pulltab.center {
+    top: 47%;
+}
+.pullout-drawer.vertical .pulltab.bottom {
+    bottom: 0;
+}
+.pullout-drawer.top .pulltab {
+    border-top: solid 1px #4c4c4c;
+    margin-top: 0px;
+}
+.pullout-drawer.right .pulltab {
+    right: 100%;
+    border-right: solid 1px #4c4c4c;
+    margin-right: -1px;
+}
+.pullout-drawer.bottom .pulltab {
+    bottom: 100%;
+    border-bottom: solid 1px #4c4c4c;
+    margin-bottom: -1px;
+}
+.pullout-drawer.left .pulltab {
+    border-left: solid 1px #4c4c4c;
+    margin-left: -1px;
+}
+.pullout-drawer .grabber {
+    margin: 3px 0px 0px 2px;
+}
+.pullout-drawer.horizontal .grabber {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    margin: 0px 0px 0px 7px;
+}
+.pullout-drawer.bottom .pulltab {
+    bottom: 100%;
+    border-bottom: solid 1px #4c4c4c;
+    margin-bottom: -1px;
+}
+.pullout-drawer-visible {
+    visibility: inherit;
+}
+.pullout-drawer-invisible {
+    visibility: hidden;
+}
+/* Enyo framework overrides */
+ .pullout-drawer .enyo-fittable-rows-layout > .enyo-tool-decorator {
+    vertical-align: middle;
+    display: block;
+    margin: 6px 0px;
+}
