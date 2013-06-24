@@ -11,145 +11,146 @@
 		
 	</head>
 	<body class="onyx enyo-unselectable">
+		<div id="example"></div>
 		<script>
 			enyo.kind({
-    name: "App",
-    style: "background-color: #000;",
-    classes: "enyo-fit",
-    kind: enyo.FittableRows,
-    components: [{
-        kind: onyx.Button,
-        content: "Toggle Drawer",
-        enabled: true,
-        style: "margin: 5px",
-        ontap: "toggleDrawer"
-    }],
-    rendered: function () {
-        this.createDrawer({}, {});
-    },
-    toggleDrawer: function (inSender, inEvent) {
-        if (this.$.drawer) {
-            this.$.drawer.toggleToolbar();
-        }
-    },
-    createDrawer: function (inSender, inEvent) {
-        if (this.$.drawer) {
-            this.$.drawer.destroy();
-        }
-        this.createComponent({
-            name: "drawer",
-            kind: "marinaeariel.PulloutDrawer",
-            edge: inSender.edge || "bottom",
-            pulltabPosition: this.pulltabPosition || 0,
-            pulltabVisibility: this.pulltabVisibility || true,
-            autoCollapse: this.autoCollapse || false
-        });
-
-        this.addButtons();
-        this.$.drawer.show();
-    },
-    addButtons: function () {
-        this.$.drawer.createComponents([{
-            layoutKind: enyo.FittableColumnsLayout,
-            components: [{
-                name: "autoCollapse",
-                kind: onyx.Checkbox,
-                style: "height: 32px;",
-                onchange: "setCollapse"
-            }, {
-                style: "width: 5px;"
-            }, {
-                tag: "label",
-                content: "Auto-collapse",
-                style: "vertical-align: middle;"
-            }]
-        }, {
-            layoutKind: enyo.FittableColumnsLayout,
-            components: [{
-                name: "showPulltab",
-                kind: onyx.Checkbox,
-                style: "height: 32px;",
-                onchange: "setPulltabShow",
-                checked: true
-            }, {
-                style: "width: 5px;"
-            }, {
-                tag: "label",
-                content: "Pulltab visibility",
-                style: "vertical-align: middle;"
-            }]
-        }, {
-            kind: onyx.Button,
-            content: "Left",
-            edge: "left",
-            ontap: "createDrawer"
-        }, {
-            kind: onyx.Button,
-            content: "Top",
-            edge: "top",
-            ontap: "createDrawer"
-        }, {
-            kind: onyx.Button,
-            content: "Right",
-            edge: "right",
-            ontap: "createDrawer"
-        }, {
-            kind: onyx.Button,
-            content: "Bottom",
-            edge: "bottom",
-            ontap: "createDrawer"
-        }, {
-            layoutKind: enyo.FittableRowsLayout,
-            components: [{
-                tag: "label",
-                content: "Pulltab position",
-                style: "vertical-align: middle;"
-            }, {
-                style: "height: 5px;"
-            }, {
-                name: "pulltabPosition",
-                kind: onyx.RadioGroup,
-                onActivate: "setPulltab",
-                components: [{
-                    content: "Left/Top",
-                    value: -1
-                }, {
-                    content: "Center",
-                    value: 0
-                }, {
-                    content: "Right/Bottom",
-                    value: 1
-                }]
-            }]
-        }], {
-            owner: this
-        });
-        this.$.autoCollapse.setChecked(this.autoCollapse);
-    },
-    setCollapse: function (inSender, inEvent) {
-        this.autoCollapse = inSender.checked;
-        this.$.drawer.setAutoCollapse(this.autoCollapse);
-    },
-    setPulltabShow: function (inSender, inEvent) {
-        this.pulltabVisibility = inSender.checked;
-        this.$.drawer.setPulltabVisibility(this.pulltabVisibility);
-    },
-    setPulltab: function (inSender, inEvent) {
-        if (!inSender.active) {
-            if (!this.pulltabPosition) {
-                this.pulltabPosition = 0;
-            }
-            if (inEvent.originator.value === this.pulltabPosition) {
-                inEvent.originator.setActive(true);
-            }
-            return;
-        }
-        this.pulltabPosition = inSender.active.value;
-        this.$.drawer.setPulltabPosition(this.pulltabPosition);
-    }
-});
-
-new App().renderInto(document.getElementById('example'));
+			    name: "App",
+			    style: "background-color: #000;",
+			    classes: "enyo-fit",
+			    kind: enyo.FittableRows,
+			    components: [{
+			        kind: onyx.Button,
+			        content: "Toggle Drawer",
+			        enabled: true,
+			        style: "margin: 5px",
+			        ontap: "toggleDrawer"
+			    }],
+			    rendered: function () {
+			        this.createDrawer({}, {});
+			    },
+			    toggleDrawer: function (inSender, inEvent) {
+			        if (this.$.drawer) {
+			            this.$.drawer.toggleToolbar();
+			        }
+			    },
+			    createDrawer: function (inSender, inEvent) {
+			        if (this.$.drawer) {
+			            this.$.drawer.destroy();
+			        }
+			        this.createComponent({
+			            name: "drawer",
+			            kind: "marinaeariel.PulloutDrawer",
+			            edge: inSender.edge || "bottom",
+			            pulltabPosition: this.pulltabPosition || 0,
+			            pulltabVisibility: this.pulltabVisibility || true,
+			            autoCollapse: this.autoCollapse || false
+			        });
+			
+			        this.addButtons();
+			        this.$.drawer.show();
+			    },
+			    addButtons: function () {
+			        this.$.drawer.createComponents([{
+			            layoutKind: enyo.FittableColumnsLayout,
+			            components: [{
+			                name: "autoCollapse",
+			                kind: onyx.Checkbox,
+			                style: "height: 32px;",
+			                onchange: "setCollapse"
+			            }, {
+			                style: "width: 5px;"
+			            }, {
+			                tag: "label",
+			                content: "Auto-collapse",
+			                style: "vertical-align: middle;"
+			            }]
+			        }, {
+			            layoutKind: enyo.FittableColumnsLayout,
+			            components: [{
+			                name: "showPulltab",
+			                kind: onyx.Checkbox,
+			                style: "height: 32px;",
+			                onchange: "setPulltabShow",
+			                checked: true
+			            }, {
+			                style: "width: 5px;"
+			            }, {
+			                tag: "label",
+			                content: "Pulltab visibility",
+			                style: "vertical-align: middle;"
+			            }]
+			        }, {
+			            kind: onyx.Button,
+			            content: "Left",
+			            edge: "left",
+			            ontap: "createDrawer"
+			        }, {
+			            kind: onyx.Button,
+			            content: "Top",
+			            edge: "top",
+			            ontap: "createDrawer"
+			        }, {
+			            kind: onyx.Button,
+			            content: "Right",
+			            edge: "right",
+			            ontap: "createDrawer"
+			        }, {
+			            kind: onyx.Button,
+			            content: "Bottom",
+			            edge: "bottom",
+			            ontap: "createDrawer"
+			        }, {
+			            layoutKind: enyo.FittableRowsLayout,
+			            components: [{
+			                tag: "label",
+			                content: "Pulltab position",
+			                style: "vertical-align: middle;"
+			            }, {
+			                style: "height: 5px;"
+			            }, {
+			                name: "pulltabPosition",
+			                kind: onyx.RadioGroup,
+			                onActivate: "setPulltab",
+			                components: [{
+			                    content: "Left/Top",
+			                    value: -1
+			                }, {
+			                    content: "Center",
+			                    value: 0
+			                }, {
+			                    content: "Right/Bottom",
+			                    value: 1
+			                }]
+			            }]
+			        }], {
+			            owner: this
+			        });
+			        this.$.autoCollapse.setChecked(this.autoCollapse);
+			    },
+			    setCollapse: function (inSender, inEvent) {
+			        this.autoCollapse = inSender.checked;
+			        this.$.drawer.setAutoCollapse(this.autoCollapse);
+			    },
+			    setPulltabShow: function (inSender, inEvent) {
+			        this.pulltabVisibility = inSender.checked;
+			        this.$.drawer.setPulltabVisibility(this.pulltabVisibility);
+			    },
+			    setPulltab: function (inSender, inEvent) {
+			        if (!inSender.active) {
+			            if (!this.pulltabPosition) {
+			                this.pulltabPosition = 0;
+			            }
+			            if (inEvent.originator.value === this.pulltabPosition) {
+			                inEvent.originator.setActive(true);
+			            }
+			            return;
+			        }
+			        this.pulltabPosition = inSender.active.value;
+			        this.$.drawer.setPulltabPosition(this.pulltabPosition);
+			    }
+			});
+			
+			new App().renderInto(document.getElementById('example'));
 		</script>
 	</body>
 </html>
