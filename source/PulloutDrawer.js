@@ -54,6 +54,9 @@ enyo.kind({
         // need to let the DOM nodes render before setting the slider values
         setTimeout(enyo.bind(this, "setSlider", 0));
     },
+    showingChanged: function () {
+        this.inherited(arguments);
+    },
     pulltabVisibilityChanged: function () {
         if (this.$.pulltab) {
             this.$.pulltab.addClass(this.pulltabVisibility ? "pullout-drawer-visible" : "pullout-drawer-invisible");
@@ -163,14 +166,22 @@ enyo.kind({
     },
     toggleToolbar: function () {
         this.log();
-        (this.hasClass("collapsed")) ? this.expand(true) : this.collapse(true);
+        var mustExpand = false;
+        if(!this.showing){
+            if(!this.hasClass("collapsed")) {
+                this.hide(true);
+                mustExpand = true;
+                this.showing = true;
+            }    
+            this.applyStyle("display", "inline");
+        }
+        if(this.hasClass("collapsed") || mustExpand) {
+            this.expand(true);
+        } else { 
+            this.collapse(true);
+        }
     },
     setSlider: function () {
-        /*var popup = this;
-		var popupNode = popup.hasNode();
-		var popupWidth = popupNode.clientWidth;
-		var popupHeight = popupNode.clientHeight;*/
-
         var slider = this.$.slider;
         var sliderNode = slider.hasNode();
         var sliderWidth = sliderNode.clientWidth;
